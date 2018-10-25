@@ -127,12 +127,12 @@ $ npm install
 Under /koa_servers
 
 ```
-$ cnpm i supervisor -g
+$ npm i supervisor -g
 ```
 The supervisor's role is to listen for changes to files, and we don't have to reboot the program when we modify the files
 
 ```
-supervisor --harmony index
+$ supervisor --harmony index
 ```
 
 Reopen a terminal and return to the top directory
