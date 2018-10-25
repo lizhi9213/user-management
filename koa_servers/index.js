@@ -14,7 +14,7 @@ const app = new Koa()
 
 app.use(cors())
 
-// session存储配置
+// Session storage configuration
 const sessionMysqlConfig = {
   user: config.database.USERNAME,
   password: config.database.PASSWORD,
@@ -22,18 +22,19 @@ const sessionMysqlConfig = {
   host: config.database.HOST,
 }
 
-// 配置session中间件
+// Configure session middleware
 app.use(session({
   key: 'USER_SID',
   store: new MysqlStore(sessionMysqlConfig)
 }))
 
 
-// 配置静态资源加载中间件
+// Configure static resource loading middleware
 // app.use(koaStatic(
 //   path.join(__dirname , './public')
 // ))
-// 缓存
+
+// The cache
 app.use(staticCache(path.join(__dirname, './public'), {
   dynamic: true
 }, {
@@ -45,7 +46,7 @@ app.use(staticCache(path.join(__dirname, './images'), {
   maxAge: 365 * 24 * 60 * 60
 }))
 
-// 配置服务端模板渲染引擎中间件
+// Configure server-side template rendering engine middleware
 app.use(views(path.join(__dirname, './views'), {
   extension: 'ejs'
 }))
@@ -53,7 +54,7 @@ app.use(bodyParser({
   formLimit: '1mb'
 }))
 
-//  路由
+//  router
 app.use(require('./routers/signin.js').routes())
 app.use(require('./routers/users.js').routes())
 

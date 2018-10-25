@@ -1,8 +1,8 @@
 const config = {
-  // 启动端口
+  // Start the port
   port: 3000,
 
-  // 数据库配置
+  // Database configuration
   database: {
     DATABASE: 'userslistsql',
     USERNAME: 'root',

@@ -3,7 +3,7 @@ const userModel = require('../lib/mysql.js');
 const md5 = require('md5');
 const moment = require('moment');
 
-// post 新增用户
+// New users
 router.post('/adduser', async (ctx, next) => {
   //   console.log(ctx.request.body)
   let user = {
@@ -22,12 +22,12 @@ router.post('/adduser', async (ctx, next) => {
     // console.log(result)
     if (result.length) {
       try {
-        throw Error('用户已经存在')
+        throw Error('Users already exist')
       } catch (error) {
-        //处理err
+        //Processing err
         console.log(error)
       }
-      // 用户存在
+      // Users already exist
       ctx.body = {
         "code": 20000,
         "data": {
@@ -47,7 +47,7 @@ router.post('/adduser', async (ctx, next) => {
     } else {
       await userModel.insertData([user.group_id, user.username, md5(user.password), user.mobile, user.email, user.gender, user.address, user.age, user.note, moment().format('YYYY-MM-DD HH:mm:ss')])
         .then(res => {
-          console.log('注册成功', res)
+          //   console.log('New success', res)
           ctx.body = {
             "code": 20000,
             "data": {
@@ -60,7 +60,7 @@ router.post('/adduser', async (ctx, next) => {
   })
 })
 
-// 获取用户列表
+// Get the user list
 router.get('/getuserlist', async (ctx, next) => {
   //   console.log(ctx.query)
   const token = ctx.request.header['x-token'];
@@ -103,7 +103,7 @@ router.get('/getuserlist', async (ctx, next) => {
   })
 })
 
-// 删除用户
+// Delete user
 router.get('/deluser', async (ctx, next) => {
   //   console.log(ctx.query)
   await userModel.delUsers([1, ctx.query.id]).then(result => {
@@ -131,7 +131,7 @@ router.get('/deluser', async (ctx, next) => {
 
 })
 
-// 更新用户
+// Update user
 router.post('/updateuser', async (ctx, next) => {
   //   console.log(ctx.request.body)
   let user = {

@@ -2,7 +2,7 @@ const router = require('koa-router')();
 const userModel = require('../lib/mysql.js');
 const md5 = require('md5');
 
-//登录
+//The login
 router.post('/login', async (ctx, next) => {
   console.log(ctx.request.body)
   let username = ctx.request.body.username;
@@ -31,7 +31,7 @@ router.post('/login', async (ctx, next) => {
     })
 })
 
-//获取用户信息
+//Get user information
 router.get('/info', async (ctx, next) => {
   //   console.log(decodeURIComponent(ctx.request.querystring.split('=')))
   let mobile = decodeURIComponent(ctx.request.querystring.split('=')[1])

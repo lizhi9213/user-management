@@ -29,53 +29,53 @@ let query = function (sql, values) {
 
 let users = `
 create table if not exists users(
-    id INT NOT NULL AUTO_INCREMENT COMMENT '自增主键',
-    group_id INT NOT NULL COMMENT '组id',
-    username VARCHAR(100) NOT NULL COMMENT '用户姓名',
-    password VARCHAR(100) NOT NULL COMMENT '用户密码',
-    mobile VARCHAR(20) NOT NULL COMMENT '用户电话',
-    email VARCHAR(64) COMMENT '邮箱',
-    gender INT COMMENT '性别',
-    address VARCHAR(100) COMMENT '地址',
-    age INT COMMENT '年龄',
-    note VARCHAR(100) COMMENT '备注',
-    gen_time DATETIME NULL DEFAULT NULL COMMENT '创建时间',
-    modify_time DATETIME NULL DEFAULT NULL COMMENT '修改时间',
-    last_login_time DATETIME NULL DEFAULT NULL COMMENT '上次登录时间',
-    updated_id INT NULL DEFAULT NULL COMMENT '修改id',
-    is_del INT(11) DEFAULT NULL COMMENT '是否删除',
+    id INT NOT NULL AUTO_INCREMENT COMMENT 'On the primary key',
+    group_id INT NOT NULL COMMENT 'Group id',
+    username VARCHAR(100) NOT NULL COMMENT 'The user name',
+    password VARCHAR(100) NOT NULL COMMENT 'The user password',
+    mobile VARCHAR(20) NOT NULL COMMENT 'User Tel',
+    email VARCHAR(64) COMMENT 'email',
+    gender INT COMMENT 'gender',
+    address VARCHAR(100) COMMENT 'address',
+    age INT COMMENT 'age',
+    note VARCHAR(100) COMMENT 'note',
+    gen_time DATETIME NULL DEFAULT NULL COMMENT 'Creation time',
+    modify_time DATETIME NULL DEFAULT NULL COMMENT 'Modify the time',
+    last_login_time DATETIME NULL DEFAULT NULL COMMENT 'Last login time',
+    updated_id INT NULL DEFAULT NULL COMMENT 'Modify the id',
+    is_del INT(11) DEFAULT NULL COMMENT 'Whether or not to delete',
     PRIMARY KEY ( id )
 )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
-COMMENT = '用户表';`
+COMMENT = 'The users table';`
 
 let createTable = function (sql) {
   return query(sql, [])
 }
 
-// 建表
+// Build table
 createTable(users)
 
-// 注册用户
+// Registered users
 let insertData = function (value) {
   let _sql = "insert into users set group_id=?,username=?,password=?,mobile=?,email=?,gender=?,address=?,age=?,note=?,gen_time=?;"
   return query(_sql, value)
 }
 
-// 通过名字查找用户
+// Find the user by name
 let findDataByName = function (name) {
   let _sql = `select * from users where username="${name}";`
   return query(_sql)
 }
 
-// 通过手机号查找用户
+// Find the user by phone number
 let findDataByMobile = function (mobile) {
   let _sql = `select * from users where mobile="${mobile}";`
   return query(_sql)
 }
 
-// 查询总条数
+// Total query number
 let searchTotal = function (data) {
   let _sql = ''
   if (data.keyword !== '' && data.gid !== '') {
@@ -91,7 +91,7 @@ let searchTotal = function (data) {
   return query(_sql)
 }
 
-// 查询所有用户
+// Query for qualified users, descending sort
 let findUsers = function (data) {
   let _sql = ''
   if (data.keyword !== '' && data.gid !== '') {
@@ -106,13 +106,13 @@ let findUsers = function (data) {
   return query(_sql)
 }
 
-// 删除用户
+// Delete the user, marked as delete status
 let delUsers = function (value) {
   let _sql = `update users set is_del= ? where id = ?;`
   return query(_sql, value)
 }
 
-// 更新用户
+// Update user
 let updateUsers = function (value) {
   let _sql = "update users set group_id=?,username=?,password=?,mobile=?,email=?,gender=?,address=?,age=?,note=?,modify_time=?,updated_id=? where id=?;"
   return query(_sql, value)
