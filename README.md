@@ -23,6 +23,8 @@ $ use userslistsql;
 ```
 
 > database: userslistsql tables: users   (Tables have been built in lib/mysql)
+>
+> The foo.sql file under koa_servers/lib/ holds some test data that you can import into your mysql.
 
 
 
@@ -149,4 +151,4 @@ Visit http://localhost:9528/#/login in your browser.
 >
 > Administrator password: **123456**
 
-> **We divided the users into four groups, with the first group having the most privileges and the fourth group having the least. **
+> We divided the users into four groups, with the first group having the most privileges and the fourth group having the least. 
