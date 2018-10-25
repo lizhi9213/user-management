@@ -89,6 +89,8 @@ The back-end directory（./koa_servers）
 ├── config                     // main project config
 │   └── default.js             // The configuration file
 ├── lib                        // Store operational database files
+│   ├── mysql.js               // Database operation instructions
+│   └── foo.sql                // The users table data
 ├── middlewares                // Store verification file
 │   └── check.js               // check.js 
 ├── public                     // Storing static resources
