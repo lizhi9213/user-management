@@ -139,7 +139,7 @@ The supervisor's role is to listen for changes to files, and we don't have to re
 $ supervisor --harmony index
 ```
 
-Reopen a terminal and return to the top directory
+Reopen a new terminal and return to the top directory to run the command
 
 ```
 $ npm run dev
